@@ -14,7 +14,7 @@ class PreProcesso (object):
         self.stop_words = set(stopwords.words("portuguese"))
         self.more_stopwords = ['ja', 'q', 'd', 'ai', 'desse', 'dessa', 'disso', 'nesse', 'nessa', 'nisso', 'esse', 'essa', 'isso', 'so', 'mt', 'vc', 'voce', 'ne', 'ta', 'to', 'pq',
                      'cade', 'kd', 'la', 'e', 'eh', 'dai', 'pra', 'vai', 'olha', 'pois','fica', 'muito', 'muita', 'muitos', 'muitas', 'onde', 'mim', 'oi', 'ola', 'ate','com',',','.',
-                    'nao','porque','❤❤❤❤❤❤❤❤❤','.',' .','. ',' . ']
+                    'nao','porque','❤❤❤❤❤❤❤❤❤','.',' .','. ',' . ','procos']
 
         self.more_stopwords2 = ['ja', 'q', 'd', 'ai', 'desse', 'dessa', 'disso', 'nesse', 'nessa', 'nisso', 'esse',
                                'essa', 'isso', 'so', 'mt', 'vc', 'voce', 'ne', 'ta', 'to', 'pq',
@@ -24,7 +24,7 @@ class PreProcesso (object):
                                'gostei',' ok','ok ',' ok ','perfeita','perfeito','recomendo','.',' .','. ','sempre','bom','achei',
                                'eficiente','rapido','boa','super','chegou','pratica','tudo','antes','monkeybiz','bom',
                                 'recomendo..','bonito','feio','problemas','nota','aprovado','ser','simples','repitirei','enrosco','indico',
-                                'compra..adorei','excelente','[','parabens']
+                                'compra..adorei','excelente','[','parabens','procos']
 
         self.stemmer = nltk.stem.RSLPStemmer()
 

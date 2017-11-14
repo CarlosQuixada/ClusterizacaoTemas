@@ -6,12 +6,13 @@ from summa import summarizer
 from PreProcessamento import PreProcesso
 from ExtracaoSujeito import ExtracaoSujeito
 from DBSCAN import Dbscan
+import spellchecker
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 extrator = ExtracaoSujeito()
-dataPath = 'C:/Users/Carlos/PycharmProjects/SumarizacaoGrafo/teste1.csv'
-not_temas=['d','.','ok','10']
+dataPath = 'C:/Users/Carlos/PycharmProjects/SumarizacaoGrafo/teste9.csv'
+not_temas=['d','.','ok','10','on','NO SUGGESTION','gr','procos']
 print '- - - - - - - - - - START - - - - - - - - - -'
 reviews = []
 print('========= Buscando Dados Treino =============')
@@ -55,24 +56,27 @@ temas=[]
 clusters =[]
 for frase in topicos:
     try:
-        tema = extrator.extrair(summarizer.summarize(frase,words=20,language='portuguese'))
+        tema = spellchecker.correct(extrator.extrair(summarizer.summarize(frase,words=20,language='portuguese')))
         if tema not in temas:
             temas.append(tema)
             clusters.append(frase)
             print("Novo Tema: "+tema)
         else:
+            print("Repetiu: "+tema)
             ind = temas.index(tema)
             cluster = clusters[ind]
+            print(cluster)
             clusters[ind] = cluster+" "+frase
     except:
         print("Sem Tema")
-
+print("Temas")
+print(temas)
 #IDENTIFICAÇÂO DE TEMA FINAL
 print("========== TEMAS ===========")
 for frase in clusters:
 
     try:
-        tema = extrator.extrair(summarizer.summarize(frase, words=20, language='portuguese'))
+        tema = spellchecker.correct(extrator.extrair(summarizer.summarize(frase, words=20, language='portuguese')))
         if tema not in not_temas:
             count += 1
             print("Cluster " + str(count))

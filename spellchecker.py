@@ -145,12 +145,10 @@ def best(inputted_word, suggestions, word_model=None):
     print 'FREQ', freq_sorted
     print 'HAM', hamming_sorted
     return ''
-
-if __name__ == '__main__':
+def correct(word):
     # init the word frequency model with a simple list of all possible words
     word_model = train(file('brazilian').read())
     real_words = set(word_model)
-
     # add other texts here, they are used to train the word frequency model
     texts = [
         'tese.txt',
@@ -160,21 +158,20 @@ if __name__ == '__main__':
     # enhance the model with real bodies of english so we know which words are more common than others
     word_model = train_from_files(texts, word_model)
 
-    log('Total Word Set: ', len(word_model))
-    log('Model Precision: %s' % (float(sum(word_model.values()))/len(word_model)))
+    #log('Total Word Set: ', len(word_model))
+    #log('Model Precision: %s' % (float(sum(word_model.values())) / len(word_model)))
     try:
         while True:
-            word = str(raw_input('>'))
-
             possibilities = suggestions(word, real_words, short_circuit=False)
             short_circuit_result = suggestions(word, real_words, short_circuit=True)
-            if VERBOSE:
-                print [(x, word_model[x]) for x in possibilities]
-                print best(word, possibilities, word_model)
-                print '---'
-            print [(x, word_model[x]) for x in short_circuit_result]
-            if VERBOSE:
-                print best(word, short_circuit_result, word_model)
+            #if VERBOSE:
+                #print [(x, word_model[x]) for x in possibilities]
+                #print best(word, possibilities, word_model)
+                #print '---'
+            #print("Teste 1")
+            teste = [(x, word_model[x]) for x in short_circuit_result]
+            #print(teste[0][0])
+            return teste[0][0]
 
     except (EOFError, KeyboardInterrupt):
         exit(0)
