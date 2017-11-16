@@ -11,7 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 extrator = ExtracaoSujeito()
-dataPath = 'C:/Users/Carlos/PycharmProjects/SumarizacaoGrafo/teste9.csv'
+dataPath = 'teste9.csv'
 not_temas=['d','.','ok','10','on','NO SUGGESTION','gr','procos']
 print '- - - - - - - - - - START - - - - - - - - - -'
 reviews = []
@@ -73,6 +73,18 @@ print("Temas")
 print(temas)
 #IDENTIFICAÇÂO DE TEMA FINAL
 print("========== TEMAS ===========")
+
+
+a = [spellchecker.correct(extrator.extrair(summarizer.summarize(frase, words=20, language='portuguese'))) for frase in clusters]
+a = list(set(a))
+
+for tema in a:
+    if tema not in not_temas:
+        count += 1
+        print("Cluster " + str(count))
+        # print("Texto: "+frase)
+        print("Tema: " + tema)
+'''
 for frase in clusters:
 
     try:
@@ -84,5 +96,7 @@ for frase in clusters:
             print("Tema: " + tema)
     except:
        print("Sem Tema")
+
+'''
 
 print '- - - - - - - - - -  END  - - - - - - - - - -'
